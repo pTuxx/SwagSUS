@@ -1,6 +1,8 @@
 local function gitgrab(user, repo, branch, path)
   local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
-  return h()
+  if h then
+    return h()
+  end
 end
 
 local function github(user, repo, branch, path, epath)
@@ -59,7 +61,6 @@ end
          term.clear()
          term.setCursorPos(1,1)
          print("SwagSUS 1.0 Pro")
-         shell.run("cd disk")
          term.setTextColor(colors.white)
          term.setCursorPos(1,2)
      else
@@ -67,7 +68,6 @@ end
          Install()
          term.setCursorPos(1,1)
          print("SwagSUS 1.0")
-         shell.run("cd disk")
          term.setCursorPos(1,2)
      end
  end
