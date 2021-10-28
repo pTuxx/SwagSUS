@@ -34,16 +34,20 @@ local function getDeviceType()
  end
  
 local function Install()
-  
+  if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt").readAll()) then
+    github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "versions/os_version.txt")
+    github("pTuxx", "SwagSUS", "main", "startup.lua", "startup.lua")
+    shell.run("reboot")
+  end
 
   if not fs.exists("versions/doorlock_version.txt") or tonumber(read_file("versions/doorlock_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt").readAll()) then
     github("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt", "versions/doorlock_version.txt")
-    github("pTuxx", "SwagSUS", "main/programs", "doorlock.lua", "doorlock.lua")
+    github("pTuxx", "SwagSUS", "main/programs", "doorlock.lua", "programs/doorlock.lua")
   end
 
   if not fs.exists("versions/rcturtle_version.txt") or tonumber(read_file("versions/rcturtle_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt").readAll()) then
-    github("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt", "versions/rcturtle_version.txt")
-    github("pTuxx", "SwagSUS", "main/programs", "rcturtle.lua", "rcturtle.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt", "versions/rcturtle_version.txt")x
+    github("pTuxx", "SwagSUS", "main/programs", "rcturtle.lua", "programs/rcturtle.lua")
   end
 end
  
