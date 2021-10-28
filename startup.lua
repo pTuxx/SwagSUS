@@ -1,12 +1,12 @@
 local function gitgrab(user, repo, branch, path)
-  local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
+  h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
   if h then
     return h()
   end
 end
 
 local function github(user, repo, branch, path, epath)
-  local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
+  h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
   
   if h then
     f = fs.open(epath, "w")
