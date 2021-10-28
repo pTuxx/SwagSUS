@@ -1,5 +1,6 @@
 local function gitgrab(user, repo, branch, path)
   local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
+  print(h)
   if h then
     return tostring(h())
   end
