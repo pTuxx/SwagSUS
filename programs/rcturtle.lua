@@ -19,6 +19,7 @@ local function getDeviceType()
      io.write("What is the turtles id:\n")
      id = tonumber(read())
      rednet.open("back")
+     io.write("\nW: Move Forward\nA: Turn Left\nS: Move Backwards\nD: Turn Right\nQ: Move Down\nE: Move Up\nZ: Dig Block\nX: Place Block\nR: Refuel")
      while true do
          local event, character = os.pullEvent("char")
          if character == "w" then
@@ -76,7 +77,7 @@ local function getDeviceType()
              turtle.back()
          end
          if message == "up" then
-         turtle.up()
+            turtle.up()
          end
          if message == "down" then
              turtle.down()
