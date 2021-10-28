@@ -3,14 +3,13 @@ local function gitgrab(user, repo, branch, path)
   return h()
 end
 
-local function guthub()
-  local h = http.get("https://raw.github.com/pTuxx/SwagSUS/main/startup.lua").readAll()
+local function github(user, repo, branch, path, epath)
+  local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
   
   if h then
-    f = fs.open("startup.lua", "w")
+    f = fs.open(epath, "w")
     f.write(h)
     f.close()
-    print("Downloaded.")
   end
 end
 
@@ -36,19 +35,19 @@ local function getDeviceType()
  
 local function Install()
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt").readAll()) then
-    shell.run("github pTuxx SwagSUS main/versions os_version.txt versions/os_version.txt")
-    shell.run("github pTuxx SwagSUS main startup.lua startup.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "versions/os_version.txt")
+    github("pTuxx", "SwagSUS", "main", "startup.lua", "startup.lua")
     shell.run("reboot")
   end
 
   if not fs.exists("versions/doorlock_version.txt") or tonumber(read_file("versions/doorlock_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt").readAll()) then
-    shell.run("github pTuxx SwagSUS main/versions doorlock_version.txt versions/doorlock_version.txt")
-    shell.run("github pTuxx SwagSUS main/programs doorlock.lua programs/doorlock.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt", "versions/doorlock_version.txt")
+    github("pTuxx", "SwagSUS", "main/programs", "doorlock.lua", "doorlock.lua")
   end
 
   if not fs.exists("versions/rcturtle_version.txt") or tonumber(read_file("versions/rcturtle_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt").readAll()) then
-    shell.run("github pTuxx SwagSUS main/versions rcturtle_version.txt versions/rcturtle_version.txt")
-    shell.run("github pTuxx SwagSUS main/programs doorlock.lua programs/rcturtle.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt", "versions/rcturtle_version.txt")
+    github("pTuxx", "SwagSUS", "main/programs", "rcturtle.lua", "rcturtle.lua")
   end
 end
  
