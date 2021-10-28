@@ -1,3 +1,22 @@
+function split(pString, pPattern)
+  local Table = {}
+  local fpat = "(.-)" .. pPattern
+  local last_end = 1
+  local s, e, cap = pString:find(fpat, 1)
+  while s do
+     if s ~= 1 or cap ~= "" then
+    table.insert(Table,cap)
+     end
+     last_end = e+1
+     s, e, cap = pString:find(fpat, last_end)
+  end
+  if last_end <= #pString then
+     cap = pString:sub(last_end)
+     table.insert(Table, cap)
+  end
+  return Table
+end
+
 local function gitgrab(user, repo, branch, path)
   local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
   if h then
@@ -36,6 +55,11 @@ local function getDeviceType()
  end
  
 local function Install()
+  installs = gitgrab("pTuxx", "SwagSUS", "main", "installs.txt")
+  for i = installs.length(),1,-1 do
+    loadstring(installs[i])
+  end
+
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt")) then
     github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "versions/os_version.txt")
     github("pTuxx", "SwagSUS", "main", "startup.lua", "startup.lua")
