@@ -55,11 +55,6 @@ local function getDeviceType()
  end
  
 local function Install()
-  installs = gitgrab("pTuxx", "SwagSUS", "main", "installs.txt")
-  for i = installs.length(),1,-1 do
-    loadstring(installs[i])
-  end
-
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt")) then
     github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "versions/os_version.txt")
     github("pTuxx", "SwagSUS", "main", "startup.lua", "startup.lua")
