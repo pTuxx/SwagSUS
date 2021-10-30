@@ -43,7 +43,7 @@ local function drawFrontend()
   printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and " [ Command  ]") or "Command" )
   printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
   printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
-  printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[ Reboot   ]") or "Reboot" )
+  printCentered( math.floor(h/2) + 3, -1, ((nOption == 4) and " [ Reboot   ]") or "Reboot" )
   printCentered( math.floor(h/2) + 4, 0, "")
 end
 
