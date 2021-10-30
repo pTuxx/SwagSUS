@@ -4,13 +4,13 @@ term.setCursorPos(1,1)
 if term.isColor() then
     term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
-    print("SwagSUS 1.0 Pro")
+    print("SwagSUS 2.0 Pro")
     term.setCursorPos(1,3)
     print("> ")
     term.setTextColor(colors.white)
 else
     term.setCursorPos(1,1)
-    print("SwagSUS 1.0")
+    print("SwagSUS 2.0")
     term.setCursorPos(1,3)
     print("> ")
 end

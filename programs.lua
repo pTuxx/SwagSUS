@@ -16,11 +16,11 @@ local function drawMenu()
   if term.isColor() then
     term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
-    print("SwagSUS 1.0 Pro")
+    print("SwagSUS 2.0 Pro")
     term.setTextColor(colors.white)
   else
     term.setCursorPos(1,1)
-    print("SwagSUS 1.0")
+    print("SwagSUS 2.0")
   end
   term.setCursorPos(w-11,1)
   if nOption == 1 then
