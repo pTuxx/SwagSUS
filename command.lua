@@ -21,7 +21,7 @@ while true do
     else
         shell.run(cmd)
     end
-    if term.isColor() the
+    if term.isColor() then
         term.setTextColor(colors.yellow)
         print("\n> ")
         term.setTextColor(colors.white)
