@@ -154,7 +154,7 @@ end
          startMenu()
      end
  end
- 
+
 local function startup2()
     if term.isColor() then
         term.clear()
