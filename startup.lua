@@ -140,6 +140,8 @@ end
          print("SwagSUS 1.0 Pro")
          term.setTextColor(colors.white)
          term.setCursorPos(1,2)
+         drawMenu()
+         drawFrontend()
          startMenu()
      else
         term.clear()
@@ -147,6 +149,8 @@ end
          term.setCursorPos(1,1)
          print("SwagSUS 1.0")
          term.setCursorPos(1,2)
+         drawMenu()
+         drawFrontend()
          startMenu()
      end
  end
@@ -161,6 +165,8 @@ local function startup2()
         print("SwagSUS 1.0 Pro")
         term.setTextColor(colors.white)
         term.setCursorPos(1,2)
+        drawMenu()
+        drawFrontend()
         startMenu()
     else
         term.clear()
@@ -169,6 +175,8 @@ local function startup2()
         term.setCursorPos(1,1)
         print("SwagSUS 1.0")
         term.setCursorPos(1,2)
+        drawMenu()
+        drawFrontend()
         startMenu()
     end
 end
@@ -176,12 +184,11 @@ end
  
 if nOption  == 1 then
   shell.run("ios/.command")
-  elseif nOption == 2 then
+elseif nOption == 2 then
   shell.run("ios/.programs")
-  elseif nOption == 3 then
+elseif nOption == 3 then
   os.shutdown()
-  else
-  shell.run("ios/.UninstallDialog")
+else
 end
 
 local dt = getDeviceType()
