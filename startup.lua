@@ -1,6 +1,7 @@
 local nOption = 1
 
 function printCentered( y,s )
+  local w,h = term.getSize()
   local x = math.floor((w - string.len(s)) / 2)
   term.setCursorPos(x,y)
   term.clearLine()
