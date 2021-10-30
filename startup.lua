@@ -1,5 +1,12 @@
 local nOption = 1
 
+function printCentered( y,s )
+  local x = math.floor((w - string.len(s)) / 2)
+  term.setCursorPos(x,y)
+  term.clearLine()
+  term.write( s )
+end
+
 local function drawMenu()
   local w,h = term.getSize()
   term.clear()
