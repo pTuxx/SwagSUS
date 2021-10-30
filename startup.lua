@@ -1,8 +1,9 @@
 local nOption = 1
 
-function printCentered( y,s )
+function printCentered( y, xoff, s )
   local w,h = term.getSize()
   local x = math.floor((w - string.len(s)) / 2)
+  x = x + xoff
   term.setCursorPos(x,y)
   term.clearLine()
   term.write( s )
@@ -30,14 +31,14 @@ end
 
 local function drawFrontend()
   local w,h = term.getSize()
-  printCentered( math.floor(h/2) - 3, "")
-  printCentered( math.floor(h/2) - 2, "Start Menu" )
-  printCentered( math.floor(h/2) - 1, "")
-  printCentered( math.floor(h/2) + 0, ((nOption == 1) and "[ Command  ]") or "Command" )
-  printCentered( math.floor(h/2) + 1, ((nOption == 2) and "[ Programs ]") or "Programs" )
-  printCentered( math.floor(h/2) + 2, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
-  printCentered( math.floor(h/2) + 3, ((nOption == 4) and "[ Uninstall]") or " Uninstall" )
-  printCentered( math.floor(h/2) + 4, "")
+  printCentered( math.floor(h/2) - 3, 0, "")
+  printCentered( math.floor(h/2) - 2, 0, "Start Menu" )
+  printCentered( math.floor(h/2) - 1, 0, "")
+  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and "[ Command  ]") or "Command" )
+  printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
+  printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
+  printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[ Uninstall]") or " Uninstall" )
+  printCentered( math.floor(h/2) + 4, 0, "")
 end
 
 local function startMenu()
