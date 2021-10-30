@@ -17,7 +17,7 @@ end
 while true do
     cmd = read()
     if cmd == "menu" then
-        shell.run("startup")
+        shell.run("/startup")
     else
         shell.run(cmd)
     end

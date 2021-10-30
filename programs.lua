@@ -40,7 +40,7 @@ local function drawFrontend()
   printCentered( math.floor(h/2) - 1, 0, "")
   printCentered( math.floor(h/2) + 0, 0, ((nOption == 1) and "[ DoorLock ]") or "DoorLock" )
   printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ RCTurtle ]") or "RCTurtle" )
-  printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[   Menu   ]") or "Menu" )
+  printCentered( math.floor(h/2) + 3, 0, ((nOption == 3) and "[   Menu   ]") or "Menu" )
   printCentered( math.floor(h/2) + 4, 0, "")
 end
 
