@@ -28,4 +28,8 @@ while true do
     else
         print("\n> ")
     end
+    local x, y = term.getCursorPos()
+    x = x - 1
+    y = y + 1
+    term.setCursorPos(x,y)
 end
