@@ -35,5 +35,5 @@ while true do
     local x, y = term.getCursorPos()
     x = x + 2
     y = y - 1
-    term.setCursorPos(x,y)
+    term.setCursorPos(x,y
 end
