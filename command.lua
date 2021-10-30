@@ -17,7 +17,7 @@ end
 local x, y = term.getCursorPos()
 x = x - 1
 y = y + 1
-term.setCursorPos(x,y)
+term.setCursorPos(x,y
 while true do
     cmd = read()
     if cmd == "menu" then
