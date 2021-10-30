@@ -11,8 +11,6 @@ end
 
 install("https://raw.github.com/pTuxx/SwagSUS/main/startup.lua", "/startup.lua")
 install("https://raw.github.com/pTuxx/SwagSUS/main/programs/exit.lua", "/programs/exit.lua")
-install("https://raw.github.com/pTuxx/SwagSUS/main/programs.lua", "/programs.lua")
-install("https://raw.github.com/pTuxx/SwagSUS/main/command.lua", "/command.lua")
 
 shell.run("rm /install.lua")
 shell.run("reboot")
