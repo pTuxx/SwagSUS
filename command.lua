@@ -16,7 +16,7 @@ else
 end
 while true do
     cmd = read()
-    if cmd == "menu" do
+    if cmd == "menu" then
         shell.run("startup")
     else
         shell.run(cmd)
