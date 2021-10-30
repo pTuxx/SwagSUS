@@ -13,9 +13,15 @@ local function drawMenu()
   local w,h = term.getSize()
   term.clear()
   term.setCursorPos(1,1)
-  term.write("Impending OS Alpha // ")
-  term.setCursorPos(1,2)
-  shell.run("id")
+  if term.isColor() then
+    term.setTextColor(colors.yellow)
+    term.setCursorPos(1,1)
+    print("SwagSUS 1.0 Pro")
+    term.setTextColor(colors.white)
+  else
+    term.setCursorPos(1,1)
+    print("SwagSUS 1.0")
+  end
   term.setCursorPos(w-11,1)
   if nOption == 1 then
     term.write("Command")
@@ -34,7 +40,7 @@ local function drawFrontend()
   printCentered( math.floor(h/2) - 3, 0, "")
   printCentered( math.floor(h/2) - 2, 0, "Start Menu" )
   printCentered( math.floor(h/2) - 1, 0, "")
-  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and "[ Command  ]") or "Command" )
+  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and "  [ Command  ]") or "Command" )
   printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
   printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
   printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[ Uninstall]") or " Uninstall" )
@@ -140,57 +146,6 @@ local function Install()
   end
 end
  
- local function startup1()
-     if term.isColor() then
-         term.clear()
-         Install()
-         term.setTextColor(colors.yellow)
-         term.clear()
-         term.setCursorPos(1,1)
-         print("SwagSUS 1.0 Pro")
-         term.setTextColor(colors.white)
-         term.setCursorPos(1,2)
-         drawMenu()
-         drawFrontend()
-         startMenu()
-     else
-        term.clear()
-         Install()
-         term.setCursorPos(1,1)
-         print("SwagSUS 1.0")
-         term.setCursorPos(1,2)
-         drawMenu()
-         drawFrontend()
-         startMenu()
-     end
- end
-
-local function startup2()
-    if term.isColor() then
-        term.clear()
-        Install()
-        term.setTextColor(colors.yellow)
-        term.clear()
-        term.setCursorPos(1,1)
-        print("SwagSUS 1.0 Pro")
-        term.setTextColor(colors.white)
-        term.setCursorPos(1,2)
-        drawMenu()
-        drawFrontend()
-        startMenu()
-    else
-        term.clear()
-        Install()
-        term.clear()
-        term.setCursorPos(1,1)
-        print("SwagSUS 1.0")
-        term.setCursorPos(1,2)
-        drawMenu()
-        drawFrontend()
-        startMenu()
-    end
-end
- 
  
 if nOption  == 1 then
   shell.run("ios/.command")
@@ -201,11 +156,7 @@ elseif nOption == 3 then
 else
 end
 
-local dt = getDeviceType()
-if dt == "turtle" then
-  startup2()
-elseif dt == "computer" or dt == "command_computer" then
-  startup1()
-elseif dt == "pocket" then
-  startup2()
-end
+Install()
+drawMenu()
+drawFrontend()
+startMenu()
