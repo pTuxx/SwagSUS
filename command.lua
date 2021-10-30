@@ -33,7 +33,7 @@ while true do
         print("\n> ")
     end
     local x, y = term.getCursorPos()
-    x = x - 1
-    y = y + 1
+    x = x + 2
+    y = y - 1
     term.setCursorPos(x,y)
 end
