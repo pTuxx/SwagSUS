@@ -174,6 +174,16 @@ local function startup2()
 end
  
  
+if nOption  == 1 then
+  shell.run("ios/.command")
+  elseif nOption == 2 then
+  shell.run("ios/.programs")
+  elseif nOption == 3 then
+  os.shutdown()
+  else
+  shell.run("ios/.UninstallDialog")
+end
+
 local dt = getDeviceType()
 if dt == "turtle" then
   startup2()
