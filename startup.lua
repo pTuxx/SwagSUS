@@ -1,3 +1,61 @@
+local nOption = 1
+
+local function drawMenu()
+  local w,h = term.getSize()
+  term.clear()
+  term.setCursorPos(1,1)
+  term.write("Impending OS Alpha // ")
+  term.setCursorPos(1,2)
+  shell.run("id")
+  term.setCursorPos(w-11,1)
+  if nOption == 1 then
+    term.write("Command")
+  elseif nOption == 2 then
+    term.write("Programs")
+  elseif nOption == 3 then
+    term.write("Shutdown")
+  elseif nOption == 4 then
+    term.write("Uninstall")
+  else
+  end
+end
+
+local function drawFrontend()
+  printCentered( math.floor(h/2) - 3, "")
+  printCentered( math.floor(h/2) - 2, "Start Menu" )
+  printCentered( math.floor(h/2) - 1, "")
+  printCentered( math.floor(h/2) + 0, ((nOption == 1) and "[ Command  ]") or "Command" )
+  printCentered( math.floor(h/2) + 1, ((nOption == 2) and "[ Programs ]") or "Programs" )
+  printCentered( math.floor(h/2) + 2, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
+  printCentered( math.floor(h/2) + 3, ((nOption == 4) and "[ Uninstall]") or " Uninstall" )
+  printCentered( math.floor(h/2) + 4, "")
+end
+
+local function startMenu()
+  while true do
+    local e,p = os.pullEvent()
+    if e == "key" then
+      local key = p
+      if key == 17 or key == 200 then
+        if nOption > 1 then
+          nOption = nOption - 1
+          drawMenu()
+          drawFrontend()
+        end
+      elseif key == 31 or key == 208 then
+        if nOption < 4 then
+          nOption = nOption + 1
+          drawMenu()
+          drawFrontend()
+        end
+      elseif key == 28 then
+        break
+      end
+    end
+  end
+  term.clear()
+end
+
 function split(pString, pPattern)
   local Table = {}
   local fpat = "(.-)" .. pPattern
@@ -82,41 +140,45 @@ end
          print("SwagSUS 1.0 Pro")
          term.setTextColor(colors.white)
          term.setCursorPos(1,2)
+         startMenu()
      else
         term.clear()
          Install()
          term.setCursorPos(1,1)
          print("SwagSUS 1.0")
          term.setCursorPos(1,2)
+         startMenu()
      end
  end
  
- local function startup2()
-     if term.isColor() then
-         term.clear()
-         Install()
-         term.setTextColor(colors.yellow)
-         term.clear()
-         term.setCursorPos(1,1)
-         print("SwagSUS 1.0 Pro")
-         term.setTextColor(colors.white)
-         term.setCursorPos(1,2)
-     else
-         term.clear()
-         Install()
-         term.clear()
-         term.setCursorPos(1,1)
-         print("SwagSUS 1.0")
-         term.setCursorPos(1,2)
-     end
- end
+local function startup2()
+    if term.isColor() then
+        term.clear()
+        Install()
+        term.setTextColor(colors.yellow)
+        term.clear()
+        term.setCursorPos(1,1)
+        print("SwagSUS 1.0 Pro")
+        term.setTextColor(colors.white)
+        term.setCursorPos(1,2)
+        startMenu()
+    else
+        term.clear()
+        Install()
+        term.clear()
+        term.setCursorPos(1,1)
+        print("SwagSUS 1.0")
+        term.setCursorPos(1,2)
+        startMenu()
+    end
+end
  
  
- local dt = getDeviceType()
- if dt == "turtle" then
-   startup2()
- elseif dt == "computer" or dt == "command_computer" then
-   startup1()
- elseif dt == "pocket" then
-   startup2()
- end
+local dt = getDeviceType()
+if dt == "turtle" then
+  startup2()
+elseif dt == "computer" or dt == "command_computer" then
+  startup1()
+elseif dt == "pocket" then
+  startup2()
+end
