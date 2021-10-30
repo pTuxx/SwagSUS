@@ -40,10 +40,10 @@ local function drawFrontend()
   printCentered( math.floor(h/2) - 3, 0, "")
   printCentered( math.floor(h/2) - 2, 0, "Start Menu" )
   printCentered( math.floor(h/2) - 1, 0, "")
-  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and "  [ Command  ]") or "Command" )
+  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and " [ Command  ]") or "Command" )
   printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
   printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
-  printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[ Uninstall]") or " Uninstall" )
+  printCentered( math.floor(h/2) + 3, 0, ((nOption == 4) and "[ Reboot   ]") or "Reboot" )
   printCentered( math.floor(h/2) + 4, 0, "")
 end
 
@@ -65,7 +65,15 @@ local function startMenu()
           drawFrontend()
         end
       elseif key == 28 then
-        break
+        if nOption  == 1 then
+          shell.run("/command")
+        elseif nOption == 2 then
+          shell.run("/programs")
+        elseif nOption == 3 then
+          os.shutdown()
+        else
+          os.reboot()
+        end
       end
     end
   end
@@ -100,7 +108,6 @@ end
 
 local function github(user, repo, branch, path, epath)
   local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
-  
   if h then
     f = fs.open(epath, "w")
     f.write(h)
@@ -127,33 +134,23 @@ local function getDeviceType()
      return "computer"
    end
  end
- 
+
 local function Install()
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt")) then
-    github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "versions/os_version.txt")
-    github("pTuxx", "SwagSUS", "main", "startup.lua", "startup.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "os_version.txt", "/versions/os_version.txt")
+    github("pTuxx", "SwagSUS", "main", "startup.lua", "/startup.lua")
     shell.run("reboot")
   end
 
   if not fs.exists("versions/doorlock_version.txt") or tonumber(read_file("versions/doorlock_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt")) then
-    github("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt", "versions/doorlock_version.txt")
-    github("pTuxx", "SwagSUS", "main/programs", "doorlock.lua", "programs/doorlock.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt", "/versions/doorlock_version.txt")
+    github("pTuxx", "SwagSUS", "main/programs", "doorlock.lua", "/programs/doorlock.lua")
   end
 
   if not fs.exists("versions/rcturtle_version.txt") or tonumber(read_file("versions/rcturtle_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt")) then
-    github("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt", "versions/rcturtle_version.txt")
-    github("pTuxx", "SwagSUS", "main/programs", "rcturtle.lua", "programs/rcturtle.lua")
+    github("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt", "/versions/rcturtle_version.txt")
+    github("pTuxx", "SwagSUS", "main/programs", "rcturtle.lua", "/programs/rcturtle.lua")
   end
-end
- 
- 
-if nOption  == 1 then
-  shell.run("ios/.command")
-elseif nOption == 2 then
-  shell.run("ios/.programs")
-elseif nOption == 3 then
-  os.shutdown()
-else
 end
 
 Install()
