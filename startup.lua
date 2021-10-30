@@ -21,6 +21,7 @@ local function drawMenu()
 end
 
 local function drawFrontend()
+  local w,h = term.getSize()
   printCentered( math.floor(h/2) - 3, "")
   printCentered( math.floor(h/2) - 2, "Start Menu" )
   printCentered( math.floor(h/2) - 1, "")
