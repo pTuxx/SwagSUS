@@ -26,7 +26,7 @@ local function drawMenu()
     term.setCursorPos(w-11,1)
   else
     term.setCursorPos(1,2)
-  en
+  end
   if nOption == 1 then
     term.write("DoorLock")
   elseif nOption == 2 then
