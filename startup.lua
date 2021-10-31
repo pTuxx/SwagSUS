@@ -47,7 +47,11 @@ local function drawMenu()
     term.setCursorPos(1,1)
     print("SwagSUS 2.0")
   end
-  term.setCursorPos(1,2)
+  if ctype == "turtle" or ctype == "computer" then
+    term.setCursorPos(w-11,1)
+  else
+    term.setCursorPos(1,2)
+  end
   if nOption == 1 then
     term.write("Command")
   elseif nOption == 2 then
@@ -55,7 +59,7 @@ local function drawMenu()
   elseif nOption == 3 then
     term.write("Shutdown")
   elseif nOption == 4 then
-    term.write("Uninstall")
+    term.write("Reboot")
   else
   end
 end
