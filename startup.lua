@@ -50,7 +50,7 @@ local function drawMenu()
   if ctype == "turtle" or ctype == "computer" then
     term.setCursorPos(w-11,1)
   else
-    term.setCursorPos(1,2
+    term.setCursorPos(1,2)
   end
   if nOption == 1 then
     term.write("Command")
