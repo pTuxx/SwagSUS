@@ -1,5 +1,19 @@
 local nOption = 1
 
+local function getDeviceType()
+  if turtle then
+    return "turtle"
+  elseif pocket then
+    return "pocket"
+  elseif commands then
+    return "command_computer"
+  else
+    return "computer"
+  end
+end
+
+local ctype = getDeviceType()
+
 local function install(url, path)
   local h = http.get(url).readAll()
 
@@ -51,10 +65,17 @@ local function drawFrontend()
   printCentered( math.floor(h/2) - 3, 0, "")
   printCentered( math.floor(h/2) - 2, 0, "Start Menu" )
   printCentered( math.floor(h/2) - 1, 0, "")
-  printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and " [ Command  ]") or "Command" )
-  printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
-  printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
-  printCentered( math.floor(h/2) + 3, -1, ((nOption == 4) and " [ Reboot   ]") or "Reboot" )
+  if ctype == "turtle" or ctype == "computer" then
+    printCentered( math.floor(h/2) + 0, -1, ((nOption == 1) and " [ Command  ]") or " Command" )
+    printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
+    printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
+    printCentered( math.floor(h/2) + 3, -1, ((nOption == 4) and " [ Reboot   ]") or "Reboot" )
+  else
+    printCentered( math.floor(h/2) + 0, 0, ((nOption == 1) and " [ Command  ]") or "Command" )
+    printCentered( math.floor(h/2) + 1, 0, ((nOption == 2) and "[ Programs ]") or "Programs" )
+    printCentered( math.floor(h/2) + 2, 0, ((nOption == 3) and "[ Shutdown ]") or "Shutdown" )
+    printCentered( math.floor(h/2) + 3, -1, ((nOption == 4) and "  [ Reboot   ]") or "Reboot" )
+  end
   printCentered( math.floor(h/2) + 4, 0, "")
 end
 
@@ -133,18 +154,6 @@ local function read_file(path)
   file:close()
   return content
 end
-
-local function getDeviceType()
-    if turtle then
-     return "turtle"
-   elseif pocket then
-     return "pocket"
-   elseif commands then
-     return "command_computer"
-   else
-     return "computer"
-   end
- end
 
 local function Install()
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt")) then
