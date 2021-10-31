@@ -9,8 +9,8 @@ local function install(url, path)
     end
 end
 
-install("https://raw.github.com/pTuxx/SwagSUS/main/startup.lua", "/startup.lua")
-install("https://raw.github.com/pTuxx/SwagSUS/main/programs/exit.lua", "/programs/exit.lua")
+install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/startup.lua", "/startup.lua")
+install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/programs/exit.lua", "/programs/exit.lua")
 
 shell.run("rm /install.lua")
 shell.run("reboot")
