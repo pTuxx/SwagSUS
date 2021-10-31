@@ -132,18 +132,9 @@ function split(pString, pPattern)
 end
 
 local function gitgrab(user, repo, branch, path)
-  local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
+  local h = http.get("https://raw.githubusercontent.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
   if h then
     return h
-  end
-end
-
-local function github(user, repo, branch, path, epath)
-  local h = http.get("https://raw.github.com/"..user.."/"..repo.."/"..branch.."/"..path).readAll()
-  if h then
-    f = fs.open(epath, "w")
-    f.write(h)
-    f.close()
   end
 end
 
@@ -157,29 +148,29 @@ end
 
 local function Install()
   if not fs.exists("versions/os_version.txt") or tonumber(read_file("versions/os_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "os_version.txt")) then
-    install("https://raw.github.com/pTuxx/SwagSUS/main/versions/os_version.txt", "/versions/os_version.txt")
-    install("https://raw.github.com/pTuxx/SwagSUS/main/startup.lua", "/startup.lua")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/versions/os_version.txt", "/versions/os_version.txt")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/startup.lua", "/startup.lua")
     shell.run("reboot")
   end
 
   if not fs.exists("versions/doorlock_version.txt") or tonumber(read_file("versions/doorlock_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "doorlock_version.txt")) then
-    install("https://raw.github.com/pTuxx/SwagSUS/main/versions/doorlock_version.txt", "/versions/doorlock_version.txt")
-    install("https://raw.github.com/pTuxx/SwagSUS/main/programs/doorlock.lua", "/programs/doorlock.lua")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/versions/doorlock_version.txt", "/versions/doorlock_version.txt")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/programs/doorlock.lua", "/programs/doorlock.lua")
   end
 
   if not fs.exists("versions/rcturtle_version.txt") or tonumber(read_file("versions/rcturtle_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "rcturtle_version.txt")) then
-    install("https://raw.github.com/pTuxx/SwagSUS/main/versions/rcturtle_version.txt", "/versions/rcturtle_version.txt")
-    install("https://raw.github.com/pTuxx/SwagSUS/main/programs/rcturtle.lua", "/programs/rcturtle.lua")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/versions/rcturtle_version.txt", "/versions/rcturtle_version.txt")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/programs/rcturtle.lua", "/programs/rcturtle.lua")
   end
 
   if not fs.exists("versions/command_version.txt") or tonumber(read_file("versions/command_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "command_version.txt")) then
-    install("https://raw.github.com/pTuxx/SwagSUS/main/versions/command_version.txt", "/versions/command_version.txt")
-    install("https://raw.github.com/pTuxx/SwagSUS/main/command.lua", "/command.lua")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/versions/command_version.txt", "/versions/command_version.txt")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/command.lua", "/command.lua")
   end
 
   if not fs.exists("versions/programs_version.txt") or tonumber(read_file("versions/programs_version.txt")) < tonumber(gitgrab("pTuxx", "SwagSUS", "main/versions", "programs_version.txt")) then
-    install("https://raw.github.com/pTuxx/SwagSUS/main/versions/programs_version.txt", "/versions/programs_version.txt")
-    install("https://raw.github.com/pTuxx/SwagSUS/main/programs.lua", "/programs.lua")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/versions/programs_version.txt", "/versions/programs_version.txt")
+    install("https://raw.githubusercontent.com/pTuxx/SwagSUS/main/programs.lua", "/programs.lua")
   end
 end
 
