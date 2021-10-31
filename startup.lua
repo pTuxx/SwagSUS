@@ -47,7 +47,7 @@ local function drawMenu()
     term.setCursorPos(1,1)
     print("SwagSUS 2.0")
   end
-  term.setCursorPos(1,2)
+  term.setCursorPos(1,2
   if nOption == 1 then
     term.write("Command")
   elseif nOption == 2 then
