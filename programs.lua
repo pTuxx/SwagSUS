@@ -1,5 +1,17 @@
 local nOption = 1
 
+local function getDeviceType()
+  if turtle then
+    return "turtle"
+  elseif pocket then
+    return "pocket"
+  elseif commands then
+    return "command_computer"
+  else
+    return "computer"
+  end
+end
+
 local ctype = getDeviceType()
 
 function printCentered( y, xoff, s )
