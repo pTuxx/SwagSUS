@@ -28,7 +28,7 @@ local function getDeviceType()
      rednet.send(id, input)
      term.clear()
      rednet.close(modem)
-     shell.run("reboot")
+     shell.run("/startup")
  end
  if dt == "computer" or dt == "command_computer" then
      term.clear()
@@ -71,7 +71,7 @@ local function getDeviceType()
                  sleep(opentime)
                  redstone.setOutput(side, false)
              elseif message == stopPass then
-                 shell.run("reboot")
+                 shell.run("/startup")
              end
              if protocol == "lua" then
                  shell.run(protocol)
@@ -93,7 +93,7 @@ local function getDeviceType()
                 sleep(opentime)
                 redstone.setOutput(side, false)
              elseif input == stopPass then
-                shell.run("reboot")
+                shell.run("/startup")
              end
          end
      end
@@ -111,5 +111,5 @@ local function getDeviceType()
     rednet.send(id, input)
     term.clear()
     rednet.close("back")
-    shell.run("reboot")
+    shell.run("/startup")
  end

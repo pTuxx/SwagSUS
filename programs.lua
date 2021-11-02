@@ -1,5 +1,7 @@
 local nOption = 1
 
+local ctype = getDeviceType()
+
 function printCentered( y, xoff, s )
   local w,h = term.getSize()
   local x = math.floor((w - string.len(s)) / 2)
